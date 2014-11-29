@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="vault.css" type="text/css">
+        <script src="finch.min.js"></script>
+        <script src="jquery.js"></script> 
+	<script src="json2.js"></script>
+        <script src="gibberish-aes.min.js"></script>
+        <script src="handlebars-v2.0.0.js"></script>
+        <script src="interface.js"></script>
+	<script src="vault.js"></script>
+	<script src="router.js"></script>
+	<script id="list-template" type="text/x-handlebars-template">
+		{{#each results}}
+			{{this}}</br>
+		{{/each}}
+	</script>
+    </head>
+    <body>
+        <div id="title">
+            <h1>Password Vault</h1>
+        </div>
+	<div id='passphrase'>
+            <table>
+                <tr>
+                    <td>Passphrase:</td>
+                    <td><input type='password' id='secret'></td>
+                </tr>
+            </table>
+        </div>
+        <div id="errors"></div>
+        <div id="content"></div>
+    </body>
+</html>
