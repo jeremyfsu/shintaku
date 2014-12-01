@@ -10,9 +10,20 @@
 	<script src="vault.js"></script>
 	<script src="router.js"></script>
 	<script id="list-template" type="text/x-handlebars-template">
-		{{#each results}}
-			{{this}}</br>
-		{{/each}}
+	 <table>
+	  {{#each results}}
+	   <tr>
+	    <td>	
+      	     <div class='account'>
+	      <a href='#get?key={{this}}'>
+	       {{this}}
+ 	      </a>
+	     </div>
+	    </td>
+	    <td>X</td>
+	   </tr>	
+	  {{/each}}
+	 </table>
 	</script>
     </head>
     <body>
