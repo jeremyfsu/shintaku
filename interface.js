@@ -5,7 +5,11 @@ var Interface = (function() {
   return {
 	list: function () {
 		return new Array("first", "second", "third");
-	}	
+	},
+	
+	get: function(key) {
+		return "value for " + key;
+	}
   };
 
 })();

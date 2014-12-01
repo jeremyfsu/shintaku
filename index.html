@@ -24,6 +24,33 @@
 	   </tr>	
 	  {{/each}}
 	 </table>
+	<a href='#new' class='default'>Add New Record</a>
+	</script>
+	<script id="new-template" type="text/x-handlebars-template">
+	 <table>
+	  <tr>
+	   <td>Website Name:</td>
+	   <td><input type='text' id='key'></td>
+	  </tr>
+	  <tr>
+	   <td>UserID:</td>
+	   <td><input type='text' id='username'></td>
+	  </tr>
+	  <tr>
+	   <td>Password:</td>
+	   <td><input type='text' id='password'></td>
+	  </tr>
+	  <tr>
+	   <td>Notes:</td>
+	   <td><textarea rows=3 cols=20 id='notes'></textarea></td>
+	  </tr>
+	  <tr>
+	   <td><input type='button' value='Store' onclick='Vault.store();'></td>
+	  </tr>
+	  <tr>
+	   <td><a href='#list'>List Vault Items</a></td>
+	  </tr>
+	 </table>
 	</script>
     </head>
     <body>
