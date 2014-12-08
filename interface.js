@@ -9,6 +9,10 @@ var Interface = (function() {
 	
 	get: function(key) {
 		return "value for " + key;
+	},
+
+	delete: function(key) {
+		console.log("delete " + key);
 	}
   };
 

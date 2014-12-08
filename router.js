@@ -13,7 +13,14 @@ $(function() {
  Finch.route("new", function() {
   Vault.new();
  });
- 
+
+ Finch.route("delete", function() {
+  Finch.observe(function(params) {  
+   Vault.delete(params('key'));
+  });
+  Finch.navigate("list");
+ });
+
  Finch.route("/", function() {
   Finch.navigate("list");
  });

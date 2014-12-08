@@ -25,5 +25,11 @@ var Vault = {
  get: function(key) {
   value = Interface.get(key);
   console.log("passphrase="+$('input#secret').val()+"value="+value);
+ },
+
+ delete: function(key) {
+  if(confirm("Are you sure that you want to delete the record for " + key + "?")) {
+   Interface.delete(key);
+  }
  }
 };
