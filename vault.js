@@ -19,12 +19,21 @@ var Vault = {
    'password':$('input#password').val(),
    'notes':$('textarea#notes').val()
   };
-  console.log(JSON.stringify(record));
+  encrypted = GibberishAES.enc(JSON.stringify(record), $('input#secret').val());
+  Interface.store($('input#key').val(), encrypted);
+  Finch.navigate("list");
  },
 
  get: function(key) {
-  value = Interface.get(key);
-  console.log("passphrase="+$('input#secret').val()+"value="+value);
+  encrypted = Interface.get(key,$('input#secret').val());
+  try {
+   decrypted = GibberishAES.dec(encrypted, $('input#secret').val());
+   record = JSON.parse(decrypted);  
+   console.log(record);
+  }
+  catch(e) {
+   alert(e);
+  }
  },
 
  delete: function(key) {
