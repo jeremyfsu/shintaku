@@ -1,44 +1,50 @@
 var Vault = (function () {});
 
 var Vault = {
- list: function() {
-  results = Interface.list();
-  var context = {results: results};
-  var template = Handlebars.compile($("#list-template").html());
-  $('#content').html(template(context));
- },
+  list: function() {
+    results = Interface.list();
+    var context = {results: results};
+    var template = Handlebars.compile($("#list-template").html());
+    $('#content').html(template(context));
+  },
 
- new: function() {
-  var template = Handlebars.compile($("#new-template").html());
-  $('#content').html(template());
- },
+  new: function() {
+    var template = Handlebars.compile($("#form-template").html());
+    $('#content').html(template());
+  },
 
- store: function() {
-  record = {
-   'username':$('input#username').val(),
-   'password':$('input#password').val(),
-   'notes':$('textarea#notes').val()
-  };
-  encrypted = GibberishAES.enc(JSON.stringify(record), $('input#secret').val());
-  Interface.store($('input#key').val(), encrypted);
-  Finch.navigate("list");
- },
+  store: function() {
+    record = {
+      'username':$('input#username').val(),
+      'password':$('input#password').val(),
+      'notes':$('textarea#notes').val()
+    };
+    encrypted = GibberishAES.enc(JSON.stringify(record), $('input#secret').val());
+    Interface.store($('input#key').val(), encrypted);
+    Finch.navigate("list");
+  },
 
- get: function(key) {
-  encrypted = Interface.get(key,$('input#secret').val());
-  try {
-   decrypted = GibberishAES.dec(encrypted, $('input#secret').val());
-   record = JSON.parse(decrypted);  
-   console.log(record);
+  get: function(key) {
+    encrypted = Interface.get(key,$('input#secret').val());
+    try {
+      decrypted = GibberishAES.dec(encrypted, $('input#secret').val());
+      record = JSON.parse(decrypted);  
+      var template = Handlebars.compile($("#form-template").html());
+      $('#content').html(template());
+      $('input#key').val(key);
+      $('input#username').val(record.username);
+      $('input#password').val(record.password);
+      $('textarea#notes').val(record.notes);
+    }
+    catch(e) {
+      alert(e);
+    }
+  },
+
+  delete: function(key) {
+    if(confirm("Are you sure that you want to delete the record for " + key + "?")) {
+      Interface.delete(key);
+    }
   }
-  catch(e) {
-   alert(e);
-  }
- },
-
- delete: function(key) {
-  if(confirm("Are you sure that you want to delete the record for " + key + "?")) {
-   Interface.delete(key);
-  }
- }
 };
+
