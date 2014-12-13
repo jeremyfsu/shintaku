@@ -9,8 +9,13 @@
 <script src="interface.js"></script>
 <script src="vault.js"></script>
 <script src="router.js"></script>
+<script src="settings.js"></script>
 <script id="list-template" type="text/x-handlebars-template">
 <table>
+          <tr>
+            <td>Passphrase:</td>
+            <td><input type='password' id='secret'></td>
+          </tr>
           {{#each results}}
            <tr>
             <td>	
@@ -26,10 +31,15 @@
            </tr>	
           {{/each}}
          </table>
-        <a href='#new' class='default'>Add New Record</a>
+        <a href='#new' class='default'>Add New Record</a><br>
+        <a href="#settings">Settings</a>
 </script>
 <script id="form-template" type="text/x-handlebars-template">
 <table>
+          <tr>
+            <td>Passphrase:</td>
+            <td><input type='password' id='secret'></td>
+          </tr>
           <tr>
            <td>Website Name:</td>
            <td><input type='text' id='key'></td>
@@ -54,18 +64,30 @@
           </tr>
          </table>
 </script>
+<script id="settings-template" type="text/x-handlebars-template">
+  <table>
+    <tr>
+      <td>Amazon Key:</td>
+      <td><input type='text' id='key'></td>
+    </tr>
+    <tr>
+      <td>Amazon Secret:</td>
+      <td><input type='text' id='secret'></td>
+    </tr>
+    <tr>
+      <td>Amazon Bucket:</td>
+      <td><input type='text' id='bucket'></td>
+    </tr>
+    <tr>
+      <td><input type='button' value='Save' onclick='Settings.store();'></td>
+      <td><input type='button' value='Back' onclick="$('input#secret').val('');Finch.navigate('list');"></td>
+    </tr>
+  </table>
+</script>
 </head>
 <body>
 <div id="title">
   <h1>Password Vault</h1>
-</div>
-<div id='passphrase'>
-  <table>
-    <tr>
-      <td>Passphrase:</td>
-      <td><input type='password' id='secret'></td>
-    </tr>
-  </table>
 </div>
 <div id="errors"></div>
 <div id="content"></div>

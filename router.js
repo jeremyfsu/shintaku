@@ -1,7 +1,9 @@
 $(function() {
  
  Finch.route("list", function() {
-  Vault.list();
+  Finch.observe(function(params) {  
+    Vault.list(params('secret'));
+  });
  });
  
  Finch.route("get", function() {
@@ -19,6 +21,10 @@ $(function() {
    Vault.delete(params('key'));
   });
   Finch.navigate("list");
+ });
+
+ Finch.route("settings", function () {
+   Settings.read();
  });
 
  Finch.route("/", function() {
