@@ -3,11 +3,17 @@ var Vault = (function () {});
 var Vault = {
   list: function() {
     secret = $('input#secret').val();
-    results = Interface.list();
-    var context = {results: results};
-    var template = Handlebars.compile($("#list-template").html());
-    $('#content').html(template(context));
-    $('input#secret').val(secret);
+    Interface.list(function (results) {
+      if (results.length > 0) {
+        var context = {results: results};
+        var template = Handlebars.compile($("#list-template").html());
+        $('#content').html(template(context));
+        $('input#secret').val(secret);
+      }
+      else {
+        $('#content').html("No records found<br><a href='#new' class='default'>Add New Record</a><br><a href='#settings'>Settings</a>");
+      }
+    });
   },
 
   new: function() {
@@ -24,34 +30,33 @@ var Vault = {
       'notes':$('textarea#notes').val()
     };
     encrypted = GibberishAES.enc(JSON.stringify(record), $('input#secret').val());
-    Interface.store($('input#key').val(), encrypted);
-    Finch.navigate("list");
+    Interface.store($('input#key').val(), encrypted, function() {Finch.navigate("list");});
   },
 
   get: function(key) {
-    secret = $('input#secret').val();
-    encrypted = Interface.get(key);
-    try {
-      decrypted = GibberishAES.dec(encrypted, secret);
+    Interface.get(key, function(data) {
+      secret = $('input#secret').val();
+      try {decrypted = GibberishAES.dec(data, secret);}
+      catch(e) {
+        alert(e);
+        console.log(e);
+        Finch.navigate("list");
+      }
       record = JSON.parse(decrypted);  
-      var template = Handlebars.compile($("#form-template").html());
+      template = Handlebars.compile($("#form-template").html());
       $('#content').html(template());
       $('input#secret').val(secret);
       $('input#key').val(key);
       $('input#username').val(record.username);
       $('input#password').val(record.password);
       $('textarea#notes').val(record.notes);
-    }
-    catch(e) {
-      alert(e);
-      Finch.navigate("list");
-    }
+    });
   },
 
   delete: function(key) {
+    secret = $('input#secret').val();
     if(confirm("Are you sure that you want to delete the record for " + key + "?")) {
-      Interface.delete(key);
-      Finch.navigate("list");
+      Interface.delete(key, function() {Finch.navigate("list");});
     }
   }
 };

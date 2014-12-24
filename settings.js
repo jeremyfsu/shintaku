@@ -5,7 +5,7 @@ var Settings = {
     var context = {};
     var template = Handlebars.compile($("#settings-template").html());
     $('#content').html(template(context));
-    settings = JSON.parse(window.localStorage.getItem("vault_settings"));
+    var settings = JSON.parse(window.localStorage.getItem("vault_settings"));
     $('input#key').val(settings.key);
     $('input#secret').val(settings.secret);
     $('input#bucket').val(settings.bucket);

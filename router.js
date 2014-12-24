@@ -28,7 +28,12 @@ $(function() {
  });
 
  Finch.route("/", function() {
-  Finch.navigate("list");
+  if(window.localStorage.getItem("vault_settings") == null){
+    Finch.navigate("settings");
+  }
+  else {
+    Finch.navigate("list");
+  }
  });
 
  Finch.listen();
