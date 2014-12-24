@@ -20,7 +20,6 @@ $(function() {
   Finch.observe(function(params) {  
    Vault.delete(params('key'));
   });
-  Finch.navigate("list");
  });
 
  Finch.route("settings", function () {
