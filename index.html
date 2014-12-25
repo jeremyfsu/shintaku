@@ -14,8 +14,8 @@
 <script id="list-template" type="text/x-handlebars-template">
 <table>
           <tr>
-            <td>Passphrase:</td>
-            <td><input type='password' id='secret'></td>
+            <td colspan=2>Passphrase:
+            <input type='password' id='secret'></td>
           </tr>
           {{#each results}}
            <tr>
@@ -31,9 +31,21 @@
             </td>
            </tr>	
           {{/each}}
-         </table>
-        <a href='#new' class='default'>Add New Record</a><br>
-        <a href="#settings">Settings</a>
+          <tr>
+            <td>
+              <div class='orange_button'>        
+                <a href='#new'>Add New Record</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class='orange_button'>        
+                <a href="#settings">Settings</a>
+              </div>
+            </td>
+          </tr>
+</table>
 </script>
 <script id="form-template" type="text/x-handlebars-template">
 <table>
@@ -61,12 +73,16 @@
            <td><input type='button' value='Store' onclick='Vault.store();'></td>
           </tr>
           <tr>
-           <td><a href='#list'>List Vault Items</a></td>
+           <td>
+              <div class='orange_button'>        
+                <a href='#list'>List Vault Items</a>
+              </div>  
+            </td>
           </tr>
          </table>
 </script>
 <script id="settings-template" type="text/x-handlebars-template">
-  <table>
+<table>
     <tr>
       <td>Amazon Key:</td>
       <td><input type='text' id='key'></td>

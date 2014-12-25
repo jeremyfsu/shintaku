@@ -31,6 +31,19 @@ a:link, a:visited {
     color: #000;
 }
 
+.orange_button {
+  box-shadow:2px 2px 2px #000000;
+  border-radius:1em;
+  background-color: #FF572B;
+  color: #000;
+  padding: 0.5em;
+}
+
+.orange_button a:link, .orange_button a:visited {
+  text-decoration:none;
+  color: #000;
+}
+
 
 
 
