@@ -5,16 +5,18 @@ var Interface = (function() {
 
   return {
     list: function (callback) {
-      s3.listObjects(function (err, data) {
-        if (err) {console.log(err, err.stack);} 
+      request = s3.listObjects();
+      request.on('complete', function(response) {
+        if (response.error) {console.log(response.error.message, response.error.stack);} 
         else {
           var keys = [];
-          for (var i = 0; i < data.Contents.length; i++) {
-            keys.push(data.Contents[i].Key);
+          for (var i = 0; i < response.data.Contents.length; i++) {
+            keys.push(response.data.Contents[i].Key);
           }
           callback(keys);
         }
       });
+      request.send();
     },
 
     get: function(key, callback) {
@@ -32,11 +34,10 @@ var Interface = (function() {
     },
 
     delete: function(key, callback) {
-      request = s3.deleteObject({Key:key}, function(err, data) {
-        if (err) {console.log(err, err.stack);}
-      });         
+      request = s3.deleteObject({Key:key});         
       request.on('complete', function(response) {
-        callback();
+        if (response.error) {console.log(response.error.message, response.error.stack);} 
+        else {callback();}
       });
       request.send();
     }

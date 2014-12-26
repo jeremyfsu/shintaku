@@ -19,5 +19,6 @@ var Settings = {
     };
     window.localStorage.setItem("vault_settings", JSON.stringify(settings));
     alert("Settings saved");
+    window.location.assign('/');
   }
 };

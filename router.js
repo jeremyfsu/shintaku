@@ -16,6 +16,10 @@ $(function() {
   Vault.new();
  });
 
+ Finch.route("store", function () {
+   Vault.store();
+ });
+
  Finch.route("delete", function() {
   Finch.observe(function(params) {  
    Vault.delete(params('key'));
@@ -24,6 +28,10 @@ $(function() {
 
  Finch.route("settings", function () {
    Settings.read();
+ });
+
+ Finch.route("store-settings", function () {
+   Settings.store();
  });
 
  Finch.route("/", function() {
