@@ -18,9 +18,9 @@ a:link, a:visited {
     color: #fff;
 }
 
-.account {
+div.account {
     box-shadow:2px 2px 2px #000000;
-    border-radius:1em;
+/*    border-radius:1em; */
     background-color: #8EE827;
     color: #000;
     padding: 0.5em;
@@ -31,9 +31,13 @@ a:link, a:visited {
     color: #000;
 }
 
+table.account {
+  width: 100%
+}
+
 .orange_button {
   box-shadow:2px 2px 2px #000000;
-  border-radius:1em;
+/*  border-radius:1em; */
   background-color: #FF572B;
   color: #000;
   padding: 0.5em;
@@ -44,6 +48,14 @@ a:link, a:visited {
   color: #000;
 }
 
+.passphrase {
+  width: 100%;
+  min-height: 3em;
+}
 
+
+.delete {
+  text-align: right;
+}
 
 

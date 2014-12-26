@@ -14,24 +14,6 @@
 <script id="list-template" type="text/x-handlebars-template">
 <table>
           <tr>
-            <td colspan=2>Passphrase:
-            <input type='password' id='secret'></td>
-          </tr>
-          {{#each results}}
-           <tr>
-            <td>	
-             <div class='account'>
-              <a href='#get?key={{this}}'>
-               {{this}}
-              </a>
-             </div>
-            </td>
-            <td>
-             <a href='#delete?key={{this}}'>X</a>
-            </td>
-           </tr>	
-          {{/each}}
-          <tr>
             <td>
               <div class='orange_button'>        
                 <a href='#new'>Add New Record</a>
@@ -45,6 +27,25 @@
               </div>
             </td>
           </tr>
+          <tr>
+            <td>
+              <input type='password' id='secret' placeholder='passphrase' class='passphrase'>
+            </td>
+          </tr>
+          {{#each results}}
+           <tr>
+            <td>	
+             <div class='account'>
+              <table class='account'>
+                <tr>
+                  <td class='key'><a href='#get?key={{this}}'>{{this}}</a></td>
+                  <td class='delete'><a href='#delete?key={{this}}'>X</a></td>
+                </tr>
+              </table>
+             </div>
+            </td>
+           </tr>	
+          {{/each}}
 </table>
 </script>
 <script id="form-template" type="text/x-handlebars-template">
@@ -70,12 +71,16 @@
            <td><textarea rows=3 cols=20 id='notes'></textarea></td>
           </tr>
           <tr>
-           <td><input type='button' value='Store' onclick='Vault.store();'></td>
+           <td>
+            <div class='orange_button'>
+              <a href="#" onclick='Vault.store();'>Save</a>
+            </div>
+           </td>
           </tr>
           <tr>
            <td>
               <div class='orange_button'>        
-                <a href='#list'>List Vault Items</a>
+                <a href='#list'>Back to List</a>
               </div>  
             </td>
           </tr>
@@ -96,8 +101,18 @@
       <td><input type='text' id='bucket'></td>
     </tr>
     <tr>
-      <td><input type='button' value='Save' onclick='Settings.store();'></td>
-      <td><input type='button' value='Back' onclick="$('input#secret').val('');Finch.navigate('list');"></td>
+      <td>
+        <div class='orange_button'>
+          <a href='#' onclick='Settings.store();'>Save</a>
+        </div>
+      </td>
+    </tr>
+    <tr>  
+      <td>
+        <div class='orange_button'>
+          <a href='#' onclick="$('input#secret').val('');Finch.navigate('list');">Cancel</a>
+        </div>
+      </td>
     </tr>
   </table>
 </script>
