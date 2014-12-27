@@ -1,6 +1,9 @@
-spa_password_vault
+Shintaku
 ==================
 
-My password vault in a javascript single page app
+Shintaku is a password vault in a Javascript SPA (single page app).
 
-This is a re-write of my old password vault, borrowing only the css and the gibberish AES library.  In this re-write I'm using Handlebars for templating, and Finch for routing. The old version used Riak for the data store, but this one is using an interface class to seperate out the data store CRUD operations. In this version I'll be using Amazon S3 for the data store.
+Your passwords are encrypted with 256 bit AES encryption before being sent over the internet to your Amazon S3 bucket. Your Amazon credentials are stored in your HTML5 capable browser's "local storage".
+
+See it live at http://shintaku.supahiro.com, where it's hosted in an S3 bucket configured as a static web host. Add some Amazon IAM credentials and a bucket name and it's ready to roll. Since your IAM creds are stored in local storage, any other devices you wish to use to access will also need your IAM credentials entered.
+
