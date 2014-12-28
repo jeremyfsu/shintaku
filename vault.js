@@ -4,6 +4,10 @@ var Vault = {
   list: function() {
     secret = $('input#secret').val();
     Interface.list(function (results) {
+      if (results == null){
+        alert("Error encountered trying to access Amazon S3, please check the credentials and bucket name");
+        Finch.navigate('settings');
+      }
       if (results.length > 0) {
         var context = {results: results};
         var template = Handlebars.compile($("#list-template").html());
