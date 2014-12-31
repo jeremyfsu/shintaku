@@ -3,8 +3,7 @@ var Settings = (function () {});
 var Settings = {
   read: function() {
     var context = {};
-    var template = Handlebars.compile($("#settings-template").html());
-    $('#content').html(template(context));
+    $('#content').html(Handlebars.templates['settings.html'](context));
     if(window.localStorage.getItem("vault_settings") != null) {
       var settings = JSON.parse(window.localStorage.getItem("vault_settings"));
       $('input#key').val(settings.key);

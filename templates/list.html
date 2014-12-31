@@ -1,0 +1,36 @@
+<table>
+  <tr>
+    <td>
+      <div class='orange_button'>        
+        <a href='#new'>Add New Record</a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class='orange_button'>        
+        <a href="#settings">Settings</a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type='password' id='secret' placeholder='passphrase' class='passphrase'>
+    </td>
+  </tr>
+  {{#each results}}
+  <tr>
+    <td>	
+      <div class='account'>
+        <table class='account'>
+          <tr>
+            <td class='key'><a href='#get?key={{this}}'>{{this}}</a></td>
+            <td class='delete'><a href='#delete?key={{this}}'>X</a></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>	
+  {{/each}}
+</table>
+

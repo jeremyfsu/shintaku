@@ -10,8 +10,7 @@ var Vault = {
       }
       if (results.length > 0) {
         var context = {results: results};
-        var template = Handlebars.compile($("#list-template").html());
-        $('#content').html(template(context));
+        $('#content').html(Handlebars.templates['list.html'](context));
         $('input#secret').val(secret);
       }
       else {
@@ -22,8 +21,7 @@ var Vault = {
 
   new: function() {
     secret = $('input#secret').val();
-    var template = Handlebars.compile($("#form-template").html());
-    $('#content').html(template());
+    $('#content').html(Handlebars.templates['form.html']());
     $('input#secret').val(secret);
   },
 
@@ -47,8 +45,7 @@ var Vault = {
         Finch.navigate("list");
       }
       record = JSON.parse(decrypted);  
-      template = Handlebars.compile($("#form-template").html());
-      $('#content').html(template());
+      $('#content').html(Handlebars.templates['form.html']());
       $('input#secret').val(secret);
       $('input#key').val(key);
       $('input#username').val(record.username);
